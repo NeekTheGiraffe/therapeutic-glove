@@ -6,6 +6,10 @@
 2. `cd therapeutic-glove`
 3. `npm install`
 
+## Running
+
+`npm start`
+
 ## Other
 
 Interesting links:
