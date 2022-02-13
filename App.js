@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -13,6 +14,18 @@ function HomeScreen({ navigation }) {
         title="Go to settings"
         onPress={() => navigation.navigate("Settings")}
       />
+      <Button
+        title="Go to details"
+        onPress={() => navigation.navigate('Details')}
+      />
+    </View>
+  )
+}
+
+function DetailsScreen() {
+  return (
+    <View style={styles.container}>
+      <Text>Details!</Text>
     </View>
   )
 }
@@ -31,6 +44,17 @@ function SettingsScreen({ navigation }) {
       <Text>Settings screen</Text>
     </View>
   );
+}
+
+const HomeStack = createNativeStackNavigator();
+
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="Summary" component={HomeScreen} />
+      <HomeStack.Screen name="Details" component={DetailsScreen} />
+    </HomeStack.Navigator>
+  )
 }
 
 const Tab = createBottomTabNavigator();
@@ -61,7 +85,7 @@ export default function App() {
           tabBarInactiveTintColor: 'gray',
         })}
       >
-        <Tab.Screen name="Home" component={HomeScreen}/>
+        <Tab.Screen name="Home" component={HomeStackScreen}/>
         <Tab.Screen name="Games" component={GamesScreen}/>
         <Tab.Screen name="Settings" component={SettingsScreen}/>
       </Tab.Navigator>
