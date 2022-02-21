@@ -1,67 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { StyleSheet, Text, View, Button, Dimensions } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-function HomeScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <Text>Home screen</Text>
-      <Button
-        title="Go to settings"
-        onPress={() => navigation.navigate("Settings")}
-      />
-      <Button
-        title="Go to details"
-        onPress={() => navigation.navigate('Details')}
-      />
-    </View>
-  )
-}
+import { NavigationContainer, DarkTheme } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-function DetailsScreen() {
-  return (
-    <View style={styles.container}>
-      <Text>Details!</Text>
-    </View>
-  )
-}
+import { LineChart } from 'react-native-chart-kit';
 
-function GamesScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <Text>Game screen</Text>
-    </View>
-  )
-}
+import HomeStackScreen from './screens/HomeStackScreen';
+import GamesScreen from './screens/GamesScreen';
+import SettingsScreen from './screens/SettingsScreen';
 
-function SettingsScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <Text>Settings screen</Text>
-    </View>
-  );
-}
-
-const HomeStack = createNativeStackNavigator();
-
-function HomeStackScreen() {
-  return (
-    <HomeStack.Navigator>
-      <HomeStack.Screen name="Summary" component={HomeScreen} />
-      <HomeStack.Screen name="Details" component={DetailsScreen} />
-    </HomeStack.Navigator>
-  )
-}
-
+// Create Navigator for 3-tab layout
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={DarkTheme}>
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
@@ -93,11 +50,4 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
