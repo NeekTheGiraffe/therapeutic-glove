@@ -17,10 +17,16 @@ import SettingsScreen from './screens/SettingsScreen';
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+
+  console.log(DarkTheme);
+
   return (
     <NavigationContainer theme={DarkTheme}>
       <Tab.Navigator
         screenOptions={({ route }) => ({
+
+          headerShown: false,
+
           tabBarIcon: ({ focused, color, size }) => {
             var iconName;
 
@@ -49,5 +55,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-

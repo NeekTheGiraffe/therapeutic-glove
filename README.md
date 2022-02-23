@@ -10,6 +10,15 @@
 
 `npm start`
 
+## Libraries used
+
+* `react-native-chart-kit`
+* `@react-navigation/native`
+* `@react-navigation/native-stack`
+* `@react-navigation/bottom-tabs`
+* `prop-types`
+* UPCOMING: `react-native-ble-plx`
+
 ## Other
 
 Interesting links:
