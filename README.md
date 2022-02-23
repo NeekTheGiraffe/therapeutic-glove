@@ -24,3 +24,4 @@
 Interesting links:
 https://reactnative.dev/docs/getting-started
 https://github.com/vegano1/Piano-App
+https://www.npmjs.com/package/css-to-react-native-transform //converting css to react-native
