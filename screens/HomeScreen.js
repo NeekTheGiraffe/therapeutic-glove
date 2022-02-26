@@ -2,26 +2,19 @@ import { View, Text, Button, TouchableOpacity, Dimensions, ScrollView } from 're
 import styles from '../styles';
 import Card from '../components/Card';
 import { LineChart } from 'react-native-chart-kit';
+import { useState } from 'react';
 
 export default function HomeScreen({ navigation }) {
 
+  const [graphValue, setGraphValue] = useState(40);
+
   return (
-    <View
-      style={{
-        flex: 1,
-        padding: 20,
-        flexDirection: 'column',  // Sets flex as vertical
-        justifyContent: 'center', // Vertical align
-        alignItems: 'center'      // Horizontal align
-      }}
-    >
-      <Text style={{
-        color: "#fff",
-      }}>
+    <View style={styles.container}>
+      <Text style={{ color: "#fff" }}>
         Home Screen
       </Text>
 
-      <Card style={{ padding: 10, margin: 10, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+      <Card style={styles.card}>
         <Text style={{ color: "#fff"}}>Your stuff goes here!</Text>
         <Button
           title="Go to settings"
@@ -29,11 +22,21 @@ export default function HomeScreen({ navigation }) {
         />
       </Card>
 
-      <Card style={{ padding: 10, margin: 10, flexDirection: 'column', alignItems: 'center' }}>
-        <TouchableOpacity onPress={() => navigation.navigate('Details')}>
+      <Card style={styles.card}>
+        <TouchableOpacity onPress={() => navigation.navigate('Details', {
+          graphValue: graphValue
+        })}>
           <Text style={{ color: "#fff"}}>Your Data</Text>
           <LineChart
-            data={line}
+            data={{
+              labels: ['January', 'February', 'March', 'April', 'May'],
+              datasets: [
+                {
+                  data: [20, graphValue, 28, 80, 99, 43],
+                  strokeWidth: 2 // optional
+                }
+              ]
+            }}
             width={Dimensions.get('window').width - 56} // from react-native
             height={220}
             yAxisLabel={''}
@@ -56,11 +59,19 @@ export default function HomeScreen({ navigation }) {
         </TouchableOpacity>
       </Card>
 
+      
+
       <Button
         style={styles.button}
-        title="Go to details"
-        onPress={() => navigation.navigate('Details')}
+        title="Increase"
+        onPress={() => setGraphValue(graphValue + 2)}
       />
+      <Button
+        style={styles.button}
+        title="Decrease"
+        onPress={() => setGraphValue(graphValue - 2)}
+      />
+
     </View>
   )
 };

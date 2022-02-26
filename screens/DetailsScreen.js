@@ -2,12 +2,23 @@ import { View, Text, Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import styles from '../styles';
 
-export default function DetailsScreen() {
+export default function DetailsScreen({ route }) {
+
+  const { graphValue } = route.params;
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Details!</Text>
       <LineChart
-        data={line}
+        data={{
+          labels: ['January', 'February', 'March', 'April', 'May'],
+          datasets: [
+            {
+              data: [20, graphValue, 28, 80, 99, 43],
+              strokeWidth: 2 // optional
+            }
+          ]
+        }}
         width={Dimensions.get('window').width - 16} // from react-native
         height={220}
         yAxisLabel={''}

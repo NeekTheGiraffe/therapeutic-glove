@@ -10,7 +10,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { LineChart } from 'react-native-chart-kit';
 
 import HomeStackScreen from './screens/HomeStackScreen';
-import GamesScreen from './screens/GamesScreen';
+import GamesStackScreen from './screens/GamesStackScreen';
 import SettingsScreen from './screens/SettingsScreen';
 
 // Create Navigator for 3-tab layout
@@ -18,7 +18,7 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
 
-  console.log(DarkTheme);
+  // console.log(DarkTheme);
 
   return (
     <NavigationContainer theme={DarkTheme}>
@@ -49,7 +49,7 @@ export default function App() {
         })}
       >
         <Tab.Screen name="Home" component={HomeStackScreen}/>
-        <Tab.Screen name="Games" component={GamesScreen}/>
+        <Tab.Screen name="Games" component={GamesStackScreen}/>
         <Tab.Screen name="Settings" component={SettingsScreen}/>
       </Tab.Navigator>
     </NavigationContainer>
